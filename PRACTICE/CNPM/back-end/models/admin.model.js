@@ -1,14 +1,14 @@
 const mongoose = require('mongoose')
 
-const studentSchema = mongoose.Schema({
-    name: {
+const adminSchema = mongoose.Schema({
+    username: {
         type: String,
         required: true
     },
-    age: {
-        type: Number,
+    password: {
+        type: String,
         required: true
-    },
+    }
     // createdTime: {
     //     type: String,
     //     required: true
@@ -16,4 +16,4 @@ const studentSchema = mongoose.Schema({
     
 });
 
-const Student = module.exports = mongoose.model('Student', studentSchema)
+const Admin = module.exports = mongoose.model('Admin', adminSchema)

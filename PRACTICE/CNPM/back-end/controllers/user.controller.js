@@ -5,6 +5,9 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
+
+const arrOfCheckedNumber = [12345, 12346, 12347, 12348, 12349, 12350];
+
 module.exports.getIndex = (req, res) => {
   // User.find({}, (err, users) => {
   //   if (err) {
@@ -25,9 +28,7 @@ module.exports.getIndex = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-module.exports.getCreate = (req, res) => {
-  res.render("user/create");
-};
+
 
 module.exports.getDelete = (req, res) => {
   const queryDel = { _id: req.params.id };
@@ -44,11 +45,15 @@ module.exports.getDelete = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+module.exports.getCreate = (req, res) => {
+  res.render("user/create");
+};
+
 module.exports.postCreate = (req, res) => {
   const saltRounds = 15;
-  const today = new Date()
-  const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  // const today = new Date()
+  // const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  // const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
   const newUser = new User();
 
@@ -108,13 +113,22 @@ module.exports.postCreate = (req, res) => {
           //   errPassword: true,
           // });
           res.json({errPassword: true})
-        } else {
+        } else { 
+          if (arrOfCheckedNumber.indexOf(Number(req.body.checkedNumber)) == -1) {
+             res.json({errCheckedNumber: true})
+          }
           bcrypt
             .hash(req.body.password, saltRounds)
             .then((hash) => {
               newUser.user = req.body.user;
               newUser.password = hash;
-              newUser.createdTime = date+' '+time
+              newUser.name = req.body.name;
+              newUser.age = req.body.age;
+              newUser.ID = req.body.ID;
+              newUser.school = req.body.school;
+              newUser.MSSV = req.body.MSSV;
+              newUser.gmail = req.body.gmail;
+              // newUser.createdTime = date+' '+time
               newUser
                 .save()
                 .then(() => res.redirect("/user"))

@@ -40,6 +40,7 @@ const studentRoute = require('./routes/student.route')
 const userRoute = require('./routes/user.router')
 const dutyRoute = require('./routes/duty.route')
 const serviceRoute = require('./routes/service.route')
+const adminRoute = require('./routes/admin.route')
 
 
 app.set('view engine', 'pug')
@@ -70,5 +71,6 @@ app.use('/student', studentRoute)
 app.use('/user', userRoute)
 app.use('/duty', dutyRoute)
 app.use('/service', serviceRoute)
+app.use('/admin/login', adminRoute)
 
 app.listen(port, () => console.log(`Server running at port ${port}`))
