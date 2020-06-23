@@ -24,9 +24,9 @@ module.exports.getIndex = (req, res) => {
   // };
 };
 
-module.exports.getCreate = (req, res) => {
-  res.render("duty/create");
-};
+// module.exports.getCreate = (req, res) => {
+//   res.render("duty/create");
+// };
 
 module.exports.postCreate = (req, res) => {
   const today = new Date()
@@ -124,6 +124,7 @@ module.exports.postUpdate = (req, res) => {
   updatedDuty.place = req.body.place;
   updatedDuty.updatedTime = date+' '+time
   const query = { _id: req.params._id };
+
 
   // Duty.update(query, updatedDuty, (err) => {
   //   if (err) {

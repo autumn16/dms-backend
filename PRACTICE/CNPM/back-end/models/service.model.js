@@ -3,23 +3,26 @@ const mongoose = require('mongoose')
 const serviceSchema = mongoose.Schema({
     name: {
         type: String,
-        requied: true
+        required: true
     },
     service: {
         type: String,
-        requied: true
+        required: true
     },
     phone: {
         type: String,
-        requied: true
+        required: true
     },
     place: {
         type: String,
-        requied: true
+        required: true
     },
     createdTime: {
         type: String,
         required: true
+    },
+    updatedTime: {
+        type: String
     }
 });
 

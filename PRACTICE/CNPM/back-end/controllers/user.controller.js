@@ -98,14 +98,16 @@ module.exports.postCreate = (req, res) => {
   User.find({ user: req.body.user })
     .then((users) => {
       if (users.length > 0) {
-        res.render("user/create", {
-          errorUser: true,
-        });
+        // res.render("user/create", {
+        //   errorUser: true,
+        // });
+        res.json({errUser: true})
       } else {
         if (req.body.password !== req.body.confirm) {
-          res.render("user/create", {
-            errPassword: true,
-          });
+          // res.render("user/create", {
+          //   errPassword: true,
+          // });
+          res.json({errPassword: true})
         } else {
           bcrypt
             .hash(req.body.password, saltRounds)
@@ -127,16 +129,17 @@ module.exports.postCreate = (req, res) => {
 
 module.exports.getLogin = (req, res) => {
   res.render("user/login");
-};
+}
 
 module.exports.postLogin = (req, res) => {
   // jwt.sign
   User.find({ user: req.body.user })
     .then((users) => {
       if (users.length == 0) {
-        res.render("user/login", {
-          errUser: true,
-        });
+        // res.render("user/login", {
+        //   errUser: true,
+        // })
+        res.json({errUser: true})
       } else {
         const hashPassword = users[0].password;
         bcrypt
@@ -147,13 +150,15 @@ module.exports.postLogin = (req, res) => {
                 user: req.body.user,
                 password: users[0].password,
               };
-              res.render("index", {
-                errPassword: false,
-              });
+              // res.render("index", {
+              //   errPassword: false,
+              // });
+              res.json({errPassword: false})
             } else {
-              res.render("user/login", {
-                errPassword: true,
-              });
+              // res.render("user/login", {
+              //   errPassword: true,
+              // });
+              res.json({errPassword: true})
             }
           })
           .catch((err) => console.log(err));

@@ -27,12 +27,12 @@ module.exports.postCreate = (req, res) => {
   newService.phone = req.body.phone;
   newService.place = req.body.place;
   newService.createdTime = date+' '+time
-
-  newService
+  newService 
     .save()
-    .then(() => res.redirect("/service"))
+    //.then(() => res.redirect("/service"))
+    .then(() => res.json("Service is created"))
     .catch((err) => console.log(err));
-};
+}
 
 module.exports.getUpdate = (req, res) => {
   Service
@@ -47,12 +47,16 @@ module.exports.getUpdate = (req, res) => {
 };
 
 module.exports.postUpdate = (req, res) => {
+  const today = new Date()
+  const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   const updatedService = {};
   updatedService.name = req.body.name;
   updatedService.service = req.body.service;
   updatedService.phone = req.body.phone;
   updatedService.place = req.body.place;
-
+  updatedService.updatedTime = date+' '+time
+  
   const query = { _id: req.params.id };
 
   Service

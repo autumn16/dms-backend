@@ -45,11 +45,11 @@ const serviceRoute = require('./routes/service.route')
 app.set('view engine', 'pug')
 app.set('views','./views')
 
-app.get('/',(req, res) => {
-    res.render('index', {
-        name: 'Nguyen Huu Hung'
-    });
-})
+// app.get('/',(req, res) => {
+//     res.render('index', {
+//         name: 'Nguyen Huu Hung'
+//     });
+// })
 
 // CORS Headers => Required for cross-origin/cross-server communication
 app.use((req, res, next) => {

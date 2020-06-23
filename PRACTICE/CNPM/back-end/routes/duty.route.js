@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', dutyController.getIndex)
 
-router.get('/create', dutyController.getCreate)
+// router.get('/create', dutyController.getCreate)
 
 router.post('/create', dutyController.postCreate)
 
@@ -18,5 +18,6 @@ router.get('/update/:_id', dutyController.getUpdate)
 router.post('/update/:_id', dutyController.postUpdate)
 
 module.exports = router
+
 
 
