@@ -20,7 +20,7 @@
     "md5": "^2.2.1",
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
